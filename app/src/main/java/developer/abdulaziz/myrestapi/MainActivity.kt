@@ -113,66 +113,65 @@ class MainActivity : AppCompatActivity(), MyAdapter.MyClick {
         popupMenu.inflate(R.menu.menu_popup)
         popupMenu.setOnMenuItemClickListener { menu ->
             when (menu.itemId) {
-                R.id.menu_edit -> {
-                    val dialog = AlertDialog.Builder(this).create()
-                    val item = ItemAddDialogBinding.inflate(layoutInflater).apply {
-                        edtTitle.setText(myTodo.sarlavha)
-                        edtAbout.setText(myTodo.matn)
-                        edtDate.setText(myTodo.oxirgi_muddat)
-                        edtHolat.setText(myTodo.holat)
-                        save.setOnClickListener { _ ->
-                            val s = edtTitle.text.toString().trim()
-                            val m = edtAbout.text.toString().trim()
-                            val o = edtDate.text.toString().trim()
-                            val h = edtHolat.text.toString().trim()
-                            if (s.isNotEmpty() && m.isNotEmpty() && o.isNotEmpty() && h.isNotEmpty()) {
-                                val myPostRequest = MyPostRequest(h, m, o, s)
-                                myViewModel.updateTodo(myTodo.id, myPostRequest)
-                                    .observe(this@MainActivity) {
-                                        when (it.myStatus) {
-                                            MyStatus.LOADING -> {
-                                                binding.myProgress.visibility = View.VISIBLE
-                                                this.root.isClickable = false
-                                            }
-                                            MyStatus.ERROR -> {
-                                                Toast.makeText(
-                                                    this@MainActivity,
-                                                    it.message,
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                                binding.myProgress.visibility = View.INVISIBLE
-                                                this.root.isClickable = true
-                                                dialog.cancel()
-                                            }
-                                            MyStatus.SUCCESS -> {
-                                                Toast.makeText(
-                                                    this@MainActivity,
-                                                    "${it.data?.id} was Edited",
-                                                    Toast.LENGTH_SHORT
-                                                )
-                                                    .show()
-                                                binding.myProgress.visibility = View.INVISIBLE
-                                                this.root.isClickable = true
-                                                dialog.cancel()
-                                            }
-                                        }
-                                    }
-                            } else Toast.makeText(
-                                this@MainActivity,
-                                "Info is Empty",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                    dialog.setView(item.root)
-                    dialog.show()
-                }
+                R.id.menu_edit -> editItem(myTodo)
                 R.id.menu_delete -> {
                     myViewModel.deleteTodo(myTodo.id)
+                    Toast.makeText(this, "${myTodo.id} was Deleted", Toast.LENGTH_SHORT).show()
                 }
             }
             true
         }
         popupMenu.show()
+    }
+
+    private fun editItem(myTodo: MyTodo) {
+        val dialog = AlertDialog.Builder(this).create()
+        val item = ItemAddDialogBinding.inflate(layoutInflater).apply {
+            edtTitle.setText(myTodo.sarlavha)
+            edtAbout.setText(myTodo.matn)
+            edtDate.setText(myTodo.oxirgi_muddat)
+            edtHolat.setText(myTodo.holat)
+            save.setOnClickListener { _ ->
+                val s = edtTitle.text.toString().trim()
+                val m = edtAbout.text.toString().trim()
+                val o = edtDate.text.toString().trim()
+                val h = edtHolat.text.toString().trim()
+                if (s.isNotEmpty() && m.isNotEmpty() && o.isNotEmpty() && h.isNotEmpty()) {
+                    val myPostRequest = MyPostRequest(h, m, o, s)
+                    myViewModel.updateTodo(myTodo.id, myPostRequest)
+                        .observe(this@MainActivity) {
+                            when (it.myStatus) {
+                                MyStatus.LOADING -> {
+                                    binding.myProgress.visibility = View.VISIBLE
+                                    this.root.isClickable = false
+                                }
+                                MyStatus.ERROR -> {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        it.message,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    binding.myProgress.visibility = View.INVISIBLE
+                                    this.root.isClickable = true
+                                    dialog.cancel()
+                                }
+                                MyStatus.SUCCESS -> {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "${it.data?.id} was Edited",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                    binding.myProgress.visibility = View.INVISIBLE
+                                    this.root.isClickable = true
+                                    dialog.cancel()
+                                }
+                            }
+                        }
+                } else Toast.makeText(this@MainActivity, "Info is Empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.setView(item.root)
+        dialog.show()
     }
 }
