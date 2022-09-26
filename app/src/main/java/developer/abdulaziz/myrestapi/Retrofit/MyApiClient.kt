@@ -4,10 +4,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object MyApiClient {
-    private const val BASE_URL = "https://hvax.pythonanywhere.com/"
     private fun getRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("https://hvax.pythonanywhere.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

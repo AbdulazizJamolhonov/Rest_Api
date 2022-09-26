@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.16" />
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/drawable/ic_add.xml" value="0.16" />
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/drawable/ic_launcher_background.xml" value="0.16" />
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/drawable/ic_more.xml" value="0.16" />
         <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/layout/item_add_dialog.xml" value="0.14" />
         <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/layout/item_rv.xml" value="0.14965277777777777" />
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/menu/menu_popup.xml" value="0.14965277777777777" />
+        <entry key="..\:/Android Studio/user/MyRestApi/app/src/main/res/menu/my_menu_add.xml" value="0.14895833333333333" />
       </map>
     </option>
   </component>

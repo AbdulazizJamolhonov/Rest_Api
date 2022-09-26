@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MyRestApi</string>
+    <string name="sarlavha">Sarlavha</string>
+    <string name="matn">Matn</string>
+    <string name="oxirgi_muddati">Oxirgi Muddati</string>
+    <string name="holati">Holati</string>
+    <string name="saqlash">Saqlash</string>
+    <string name="edit">O\'zgartirsh</string>
+    <string name="delete">O\'chirsh</string>
+    <string name="add">Qo\'shish</string>
 </resources>
